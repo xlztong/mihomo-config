@@ -1,0 +1,269 @@
+# Surge 风格分流配置 - 适用于 Mihomo Party
+# 规则来源: https://github.com/blackmatrix7/ios_rule_script
+
+# ==================== 代理组 ====================
+proxy-groups:
+  # 主出站选择
+  - name: Outbound
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Flower.png
+    type: select
+    proxies:
+      - HK
+      - JP
+      - SG
+      - US
+      - TW
+      - Manual
+      - DIRECT
+
+  # YouTube - 默认走美国
+  - name: YouTube
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/YouTube.png
+    type: select
+    proxies:
+      - US
+      - HK
+      - JP
+      - SG
+      - TW
+      - Outbound
+
+  # Telegram - 走 Outbound
+  - name: Telegram
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Telegram.png
+    type: select
+    proxies:
+      - Outbound
+      - HK
+      - SG
+      - US
+
+  # OpenAI/AI服务 - 默认走美国
+  - name: OpenAI
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
+    type: select
+    proxies:
+      - US
+      - JP
+      - SG
+      - TW
+      - Outbound
+
+  # Final 兜底 - 走 Outbound
+  - name: Final
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Final.png
+    type: select
+    proxies:
+      - Outbound
+      - DIRECT
+      - HK
+      - US
+
+  # Guard 广告拦截/隐私保护
+  - name: Guard
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Adblock.png
+    type: select
+    proxies:
+      - REJECT
+      - DIRECT
+      - Outbound
+
+  # ==================== 地区节点组 ====================
+  - name: HK
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
+    type: url-test
+    include-all: true
+    filter: (?i)港|HK|Hong Kong|🇭🇰
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    interval: 300
+    tolerance: 50
+
+  - name: JP
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/JP.png
+    type: url-test
+    include-all: true
+    filter: (?i)日本|东京|大阪|JP|Japan|🇯🇵
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    interval: 300
+    tolerance: 50
+
+  - name: SG
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/SG.png
+    type: url-test
+    include-all: true
+    filter: (?i)新加坡|狮城|SG|Singapore|🇸🇬
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    interval: 300
+    tolerance: 50
+
+  - name: US
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
+    type: url-test
+    include-all: true
+    filter: (?i)美国|美|洛杉矶|硅谷|US|USA|United States|🇺🇸
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    interval: 300
+    tolerance: 50
+
+  - name: TW
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/TW.png
+    type: url-test
+    include-all: true
+    filter: (?i)台湾|台|TW|Taiwan|🇹🇼
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    interval: 300
+    tolerance: 50
+
+  # 手动选择 - 列出所有节点
+  - name: Manual
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Static.png
+    type: select
+    include-all: true
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+
+# ==================== 规则提供者 (blackmatrix7) ====================
+rule-providers:
+  # 广告拦截
+  Advertising:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Advertising/Advertising_Classical.yaml
+    path: ./ruleset/Advertising.yaml
+    interval: 86400
+
+  # 隐私保护
+  Privacy:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Privacy/Privacy_Classical.yaml
+    path: ./ruleset/Privacy.yaml
+    interval: 86400
+
+
+  # YouTube
+  YouTube:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/YouTube/YouTube.yaml
+    path: ./ruleset/YouTube.yaml
+    interval: 86400
+
+  # Google
+  Google:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Google/Google.yaml
+    path: ./ruleset/Google.yaml
+    interval: 86400
+
+  # Telegram
+  Telegram:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Telegram/Telegram.yaml
+    path: ./ruleset/Telegram.yaml
+    interval: 86400
+
+  # OpenAI
+  OpenAI:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/OpenAI/OpenAI.yaml
+    path: ./ruleset/OpenAI.yaml
+    interval: 86400
+
+  # Claude
+  Claude:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Claude/Claude.yaml
+    path: ./ruleset/Claude.yaml
+    interval: 86400
+
+  # Copilot
+  Copilot:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Copilot/Copilot.yaml
+    path: ./ruleset/Copilot.yaml
+    interval: 86400
+
+  # Gemini (BardAI)
+  Gemini:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/BardAI/BardAI.yaml
+    path: ./ruleset/Gemini.yaml
+    interval: 86400
+
+  # 国外代理
+  Global:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Global/Global_Classical.yaml
+    path: ./ruleset/Global.yaml
+    interval: 86400
+
+  # 国内直连
+  China:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/China/China_Classical.yaml
+    path: ./ruleset/China.yaml
+    interval: 86400
+
+  # 局域网/直连
+  Lan:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Lan/Lan.yaml
+    path: ./ruleset/Lan.yaml
+    interval: 86400
+
+# ==================== 分流规则 ====================
+rules:
+  # 局域网直连
+  - RULE-SET,Lan,DIRECT
+
+  # 广告拦截
+  - RULE-SET,Advertising,Guard
+  - RULE-SET,Privacy,Guard
+
+  # AI 服务 -> OpenAI 组
+  - RULE-SET,OpenAI,OpenAI
+  - RULE-SET,Claude,OpenAI
+  - RULE-SET,Copilot,OpenAI
+  - RULE-SET,Gemini,OpenAI
+
+  # YouTube
+  - RULE-SET,YouTube,YouTube
+
+  # Google
+  - RULE-SET,Google,Outbound
+
+  # Telegram
+  - RULE-SET,Telegram,Telegram
+
+  # 国外代理
+  - RULE-SET,Global,Outbound
+
+  # 中国直连
+  - RULE-SET,China,DIRECT
+
+  # GeoIP 中国直连
+  - GEOIP,CN,DIRECT
+
+  # 兜底规则
+  - MATCH,Final
