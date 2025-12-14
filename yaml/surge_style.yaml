@@ -129,7 +129,7 @@ proxy-providers:
   # 自有订阅（self：只包含🏠节点），并为其中所有节点注入 dialer-proxy=HK
   self:
     type: http
-    url: "http://127.0.0.1:38324/download/hkvps?target=ClashMeta&includeUnsupportedProxy=true"
+    url: "http://127.0.0.1:38324/download/collection/Self?target=ClashMeta&includeUnsupportedProxy=true"
     interval: 3600
     path: ./proxy_providers/self.yaml
     override:
