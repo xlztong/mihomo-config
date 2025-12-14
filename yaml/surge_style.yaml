@@ -25,9 +25,9 @@ proxy-groups:
       - Manual
       - DIRECT
 
-  # YouTube - 默认走美国
-  - name: YouTube
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/YouTube.png
+  # Google - 默认走美国
+  - name: Google
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Google.png
     type: select
     proxies:
       - US
@@ -303,10 +303,10 @@ rules:
   - RULE-SET,Gemini,OpenAI
 
   # YouTube
-  - RULE-SET,YouTube,YouTube
+  - RULE-SET,YouTube,Google
 
   # Google
-  - RULE-SET,Google,Outbound
+  - RULE-SET,Google,Google
 
   # Telegram
   - RULE-SET,Telegram,Telegram
