@@ -3,14 +3,6 @@
 
 # ==================== 代理组 ====================
 proxy-groups:
-  # 链式代理：🏠落地节点通过 HK 组拨号（dialer-proxy）
-  - name: 🏠Chain
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/House.png
-    type: select
-    use:
-      - self
-    filter: "🏠"
-
   # 主出站选择
   - name: Outbound
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Flower.png
@@ -124,6 +116,14 @@ proxy-groups:
     type: select
     use:
       - All
+
+  # 链式代理：🏠落地节点通过 HK 组拨号（dialer-proxy）
+  - name: 🏠Chain
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/House.png
+    type: select
+    use:
+      - self
+    filter: "🏠"
 
 proxy-providers:
   # 自有订阅（self：只包含🏠节点），并为其中所有节点注入 dialer-proxy=HK
