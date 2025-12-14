@@ -1,6 +1,5 @@
 # Surge 风格分流配置 - 适用于 Mihomo Party
 # 规则来源: https://github.com/blackmatrix7/ios_rule_script
-# 注意：节点由 Sub-Store 管理，链式代理需要在 Sub-Store 中添加名为 "HK-VPS" 的节点
 
 # ==================== 代理组 ====================
 proxy-groups:
@@ -14,7 +13,6 @@ proxy-groups:
       - SG
       - US
       - TW
-      - Chain-HK    # 链式代理：机场HK节点 -> 🏠VPS
       - Manual
       - DIRECT
 
@@ -76,7 +74,6 @@ proxy-groups:
     type: url-test
     include-all: true
     filter: (?i)港|HK|Hong Kong|🇭🇰
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     interval: 300
     tolerance: 50
 
@@ -85,7 +82,6 @@ proxy-groups:
     type: url-test
     include-all: true
     filter: (?i)日本|东京|大阪|JP|Japan|🇯🇵
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     interval: 300
     tolerance: 50
 
@@ -94,7 +90,6 @@ proxy-groups:
     type: url-test
     include-all: true
     filter: (?i)新加坡|狮城|SG|Singapore|🇸🇬
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     interval: 300
     tolerance: 50
 
@@ -103,7 +98,6 @@ proxy-groups:
     type: url-test
     include-all: true
     filter: (?i)美国|美|洛杉矶|硅谷|US|USA|United States|🇺🇸
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     interval: 300
     tolerance: 50
 
@@ -112,7 +106,6 @@ proxy-groups:
     type: url-test
     include-all: true
     filter: (?i)台湾|台|TW|Taiwan|🇹🇼
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
     interval: 300
     tolerance: 50
 
@@ -121,38 +114,6 @@ proxy-groups:
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Static.png
     type: select
     include-all: true
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
-
-  # ==================== 自有 VPS 节点组 ====================
-  - name: Self-VPS
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Server.png
-    type: select
-    use:
-      - self-vps-provider
-
-  # ==================== 链式代理组 (通过 VPS 出口) ====================
-  - name: Chain-HK
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
-    type: select
-    use:
-      - chain-hk-provider
-
-proxy-providers:
-  # 自有 VPS 节点
-  self-vps-provider:
-    type: http
-    url: "http://127.0.0.1:38324/download/hkvps?target=ClashMeta&includeUnsupportedProxy=true"
-    interval: 3600
-
-  # 链式代理节点 (通过 Self-VPS 出口)
-  chain-hk-provider:
-    type: http
-    url: "http://127.0.0.1:38324/download/collection/HK?target=ClashMeta&includeUnsupportedProxy=true"
-    interval: 3600
-    filter: (?i)港|HK|Hong Kong|🇭🇰
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🏠
-    override:
-      dialer-proxy: Self-VPS
 
 # ==================== 规则提供者 (blackmatrix7) ====================
 rule-providers:
