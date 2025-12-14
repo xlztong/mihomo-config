@@ -132,6 +132,16 @@ proxy-groups:
     filter: 🏠
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
 
+  # ==================== 链式代理组 (通过 VPS 出口) ====================
+  - name: Chain-HK
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
+    type: url-test
+    use:
+      - chain-hk-provider
+    filter: (?i)港|HK|Hong Kong|🇭🇰
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🏠
+    interval: 300
+    tolerance: 50
 
 proxy-providers:
   chain-hk-provider:
