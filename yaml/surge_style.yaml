@@ -122,7 +122,8 @@ proxy-groups:
   - name: Manual
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Static.png
     type: select
-    include-all: true
+    use:
+      - All
 
 proxy-providers:
   # 自有订阅（self：只包含🏠节点），并为其中所有节点注入 dialer-proxy=HK
@@ -164,6 +165,12 @@ proxy-providers:
     url: "http://127.0.0.1:38324/download/collection/TW?target=ClashMeta&includeUnsupportedProxy=true"
     interval: 3600
     path: ./proxy_providers/TW.yaml
+
+  All:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/All?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/All.yaml
 
 # ==================== 规则提供者 (blackmatrix7) ====================
 
