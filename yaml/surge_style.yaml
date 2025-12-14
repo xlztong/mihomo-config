@@ -14,8 +14,7 @@ proxy-groups:
       - SG
       - US
       - TW
-      - Chain-HK    # 链式代理：机场节点 -> HK-VPS
-      - Chain-US
+      - Chain-HK    # 链式代理：机场HK节点 -> 🏠VPS
       - Manual
       - DIRECT
 
@@ -124,29 +123,6 @@ proxy-groups:
     include-all: true
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
 
-  # ==================== 链式代理组 (通过 VPS 出口) ====================
-  # 链式代理：机场香港节点 -> HK-VPS 出口
-  - name: Chain-HK
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
-    type: url-test
-    include-all: true
-    filter: (?i)港|HK|Hong Kong|🇭🇰
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🏠
-    interval: 300
-    tolerance: 50
-    dialer-proxy: Self-VPS  # 通过自有 VPS 作为出口
-
-  # 链式代理：机场美国节点 -> Self-VPS 出口
-  - name: Chain-US
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
-    type: url-test
-    include-all: true
-    filter: (?i)美国|美|洛杉矶|硅谷|US|USA|United States|🇺🇸
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🏠
-    interval: 300
-    tolerance: 50
-    dialer-proxy: Self-VPS  # 通过自有 VPS 作为出口
-
   # ==================== 自有 VPS 节点组 ====================
   # 匹配所有 🏠 emoji 前缀的节点（自有 VPS）
   - name: Self-VPS
@@ -155,6 +131,34 @@ proxy-groups:
     include-all: true
     filter: 🏠
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+
+  # ==================== 链式代理组 (通过 VPS 出口) ====================
+  # 链式代理：使用 chain-provider 中的节点（已添加 dialer-proxy）
+  - name: Chain-HK
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
+    type: url-test
+    use:
+      - chain-hk-provider
+    filter: (?i)港|HK|Hong Kong|🇭🇰
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🏠
+    interval: 300
+    tolerance: 50
+
+# ==================== 代理提供者 (链式代理用) ====================
+# 用于链式代理：从 Sub-Store 获取 HK 节点，添加 dialer-proxy 使其通过 VPS 出口
+proxy-providers:
+  chain-hk-provider:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/HK?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/chain-hk.yaml
+    health-check:
+      enable: true
+      url: http://www.gstatic.com/generate_204
+      interval: 300
+    override:
+      # 所有从此 provider 获取的节点都会通过 Self-VPS 出口
+      dialer-proxy: Self-VPS
 
 # ==================== 规则提供者 (blackmatrix7) ====================
 rule-providers:
