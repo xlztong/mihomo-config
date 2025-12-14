@@ -81,40 +81,40 @@ proxy-groups:
   - name: HK
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
     type: url-test
-    include-all: true
-    filter: (?i)港|HK|Hong Kong|🇭🇰
+    use:
+      - HK
     interval: 300
     tolerance: 50
 
   - name: JP
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/JP.png
     type: url-test
-    include-all: true
-    filter: (?i)日本|东京|大阪|JP|Japan|🇯🇵
+    use:
+      - JP
     interval: 300
     tolerance: 50
 
   - name: SG
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/SG.png
     type: url-test
-    include-all: true
-    filter: (?i)新加坡|狮城|SG|Singapore|🇸🇬
+    use:
+      - SG
     interval: 300
     tolerance: 50
 
   - name: US
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
     type: url-test
-    include-all: true
-    filter: (?i)美国|美|洛杉矶|硅谷|US|USA|United States|🇺🇸
+    use:
+      - US
     interval: 300
     tolerance: 50
 
   - name: TW
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/TW.png
     type: url-test
-    include-all: true
-    filter: (?i)台湾|台|TW|Taiwan|🇹🇼
+    use:
+      - TW
     interval: 300
     tolerance: 50
 
@@ -133,6 +133,37 @@ proxy-providers:
     path: ./proxy_providers/self.yaml
     override:
       dialer-proxy: HK
+
+  # 地区节点订阅 (Sub-Store 筛选)
+  HK:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/HK?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/HK.yaml
+
+  JP:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/JP?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/JP.yaml
+
+  SG:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/SG?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/SG.yaml
+
+  US:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/US?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/US.yaml
+
+  TW:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/TW?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/TW.yaml
 
 # ==================== 规则提供者 (blackmatrix7) ====================
 
