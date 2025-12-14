@@ -124,35 +124,33 @@ proxy-groups:
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
 
   # ==================== 自有 VPS 节点组 ====================
-  # 匹配所有 🏠 emoji 前缀的节点（自有 VPS）
   - name: Self-VPS
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Server.png
     type: select
-    include-all: true
-    filter: 🏠
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
+    use:
+      - self-vps-provider
 
   # ==================== 链式代理组 (通过 VPS 出口) ====================
   - name: Chain-HK
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
-    type: url-test
+    type: select
     use:
       - chain-hk-provider
-    filter: (?i)港|HK|Hong Kong|🇭🇰
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🏠
-    interval: 300
-    tolerance: 50
 
 proxy-providers:
+  # 自有 VPS 节点
+  self-vps-provider:
+    type: http
+    url: "http://127.0.0.1:38324/download/hkvps?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+
+  # 链式代理节点 (通过 Self-VPS 出口)
   chain-hk-provider:
     type: http
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
     url: "http://127.0.0.1:38324/download/collection/HK?target=ClashMeta&includeUnsupportedProxy=true"
     interval: 3600
-    health-check:
-      enable: true
-      url: http://www.gstatic.com/generate_204
-      interval: 300
+    filter: (?i)港|HK|Hong Kong|🇭🇰
+    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🏠
     override:
       dialer-proxy: Self-VPS
 
