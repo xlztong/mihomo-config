@@ -132,23 +132,11 @@ proxy-groups:
     filter: 🏠
     exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置
 
-  # ==================== 链式代理组 (通过 VPS 出口) ====================
-  # 链式代理：使用 chain-provider 中的节点（已添加 dialer-proxy）
-  - name: Chain-HK
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
-    type: url-test
-    use:
-      - chain-hk-provider
-    filter: (?i)港|HK|Hong Kong|🇭🇰
-    exclude-filter: (?i)GB|Traffic|Expire|Premium|频道|订阅|ISP|流量|到期|重置|🏠
-    interval: 300
-    tolerance: 50
 
-# ==================== 代理提供者 (链式代理用) ====================
-# 用于链式代理：从 Sub-Store 获取 HK 节点，添加 dialer-proxy 使其通过 VPS 出口
 proxy-providers:
   chain-hk-provider:
     type: http
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Urltest.png
     url: "http://127.0.0.1:38324/download/collection/HK?target=ClashMeta&includeUnsupportedProxy=true"
     interval: 3600
     health-check:
@@ -156,7 +144,6 @@ proxy-providers:
       url: http://www.gstatic.com/generate_204
       interval: 300
     override:
-      # 所有从此 provider 获取的节点都会通过 Self-VPS 出口
       dialer-proxy: Self-VPS
 
 # ==================== 规则提供者 (blackmatrix7) ====================
