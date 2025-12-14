@@ -234,6 +234,9 @@ rule-providers:
 
 # ==================== 分流规则 ====================
 rules:
+  # SSH 端口直连（避免机场屏蔽22端口）
+  - DST-PORT,22,DIRECT
+
   # 局域网直连
   - RULE-SET,Lan,DIRECT
 
