@@ -9,6 +9,7 @@ proxy-groups:
     type: select
     proxies:
       - 🏠Chain
+      - 🇺🇸Chain
       - HK
       - JP
       - SG
@@ -115,6 +116,14 @@ proxy-groups:
       - self
     filter: "🏠"
 
+  # 链式代理：🏠落地节点通过 US 组拨号（dialer-proxy）
+  - name: 🇺🇸Chain
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
+    type: select
+    use:
+      - self-us
+    filter: "🏠"
+
 proxy-providers:
   # 自有订阅（self：只包含🏠节点），并为其中所有节点注入 dialer-proxy=HK
   self:
@@ -124,6 +133,15 @@ proxy-providers:
     path: ./proxy_providers/self.yaml
     override:
       dialer-proxy: HK
+
+  # 自有订阅（self-us：只包含🏠节点），并为其中所有节点注入 dialer-proxy=US
+  self-us:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/Self?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/self-us.yaml
+    override:
+      dialer-proxy: US
 
   # 地区节点订阅 (Sub-Store 筛选)
   HK:
