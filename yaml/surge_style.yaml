@@ -8,8 +8,8 @@ proxy-groups:
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Flower.png
     type: select
     proxies:
-      - 🏠Chain
-      - 🇺🇸Chain
+      - Chain-HK
+      - Chain-US
       - HK
       - JP
       - SG
@@ -108,17 +108,17 @@ proxy-groups:
     use:
       - All
 
-  # 链式代理：🏠落地节点通过 HK 组拨号（dialer-proxy）
-  - name: 🏠Chain
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/House.png
+  # 链式代理：落地节点通过 HK 组拨号（dialer-proxy）
+  - name: Chain-HK
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Personal.png
     type: select
     use:
       - self
     filter: "🏠"
 
-  # 链式代理：🏠落地节点通过 US 组拨号（dialer-proxy）
-  - name: 🇺🇸Chain
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/US.png
+  # 链式代理：落地节点通过 US 组拨号（dialer-proxy）
+  - name: Chain-US
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Piao.png
     type: select
     use:
       - self-us
