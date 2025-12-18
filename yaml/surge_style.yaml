@@ -229,6 +229,24 @@ rule-providers:
     path: ./ruleset/Telegram.yaml
     interval: 86400
 
+  # Crypto
+  Crypto:
+    type: http
+    behavior: classical
+    format: text
+    url: https://testingcf.jsdelivr.net/gh/xlztong/Surge@main/Rules/Crypto.list
+    path: ./ruleset/Crypto.list
+    interval: 86400
+
+  # Cryptocurrency
+  Cryptocurrency:
+    type: http
+    behavior: classical
+    format: text
+    url: https://testingcf.jsdelivr.net/gh/xlztong/Surge@main/Rules/Cryptocurrency.list
+    path: ./ruleset/Cryptocurrency.list
+    interval: 86400
+
   # OpenAI
   OpenAI:
     type: http
@@ -318,6 +336,10 @@ rules:
 
   # Telegram
   - RULE-SET,Telegram,Telegram
+
+  # Crypto
+  - RULE-SET,Crypto,TW
+  - RULE-SET,Cryptocurrency,TW
 
   # 国外代理
   - RULE-SET,Global,Outbound
