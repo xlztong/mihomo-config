@@ -301,6 +301,15 @@ rule-providers:
     path: ./ruleset/China.yaml
     interval: 86400
 
+  # 中国直连 (Max No IP)
+  ChinaMaxNoIP:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaMaxNoIP/ChinaMaxNoIP_Classical.yaml
+    path: ./ruleset/ChinaMaxNoIP.yaml
+    interval: 86400
+
   # 局域网/直连
   Lan:
     type: http
@@ -345,6 +354,7 @@ rules:
   - RULE-SET,Global,Outbound
 
   # 中国直连
+  - RULE-SET,ChinaMaxNoIP,DIRECT
   - RULE-SET,China,DIRECT
 
   # GeoIP 中国直连
