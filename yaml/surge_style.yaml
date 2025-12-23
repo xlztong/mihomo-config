@@ -23,6 +23,7 @@ proxy-groups:
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Google.png
     type: select
     proxies:
+      - Chain-US
       - US
       - HK
       - JP
@@ -45,6 +46,7 @@ proxy-groups:
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/OpenAI.png
     type: select
     proxies:
+      - Chain-US
       - US
       - JP
       - SG
