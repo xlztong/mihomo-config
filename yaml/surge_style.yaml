@@ -348,6 +348,9 @@ rules:
   # Telegram
   - RULE-SET,Telegram,Telegram
 
+  # TradingView
+  - DOMAIN-SUFFIX,tradingview.com,US
+
   # Crypto
   - RULE-SET,Crypto,TW
   - RULE-SET,Cryptocurrency,TW
