@@ -231,6 +231,15 @@ rule-providers:
     path: ./ruleset/Telegram.yaml
     interval: 86400
 
+  # Steam
+  Steam:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/Steam/Steam.yaml
+    path: ./ruleset/Steam.yaml
+    interval: 86400
+
   # Crypto
   Crypto:
     type: http
@@ -347,6 +356,9 @@ rules:
 
   # Telegram
   - RULE-SET,Telegram,Telegram
+
+  # Steam
+  - RULE-SET,Steam,Outbound
 
   # TradingView
   - DOMAIN-SUFFIX,tradingview.com,US
