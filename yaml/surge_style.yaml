@@ -265,6 +265,15 @@ rule-providers:
     path: ./ruleset/China.yaml
     interval: 86400
 
+  # 中国 IP 段直连
+  ChinaIPs:
+    type: http
+    behavior: classical
+    format: yaml
+    url: https://testingcf.jsdelivr.net/gh/blackmatrix7/ios_rule_script@master/rule/Clash/ChinaIPs/ChinaIPs_Classical.yaml
+    path: ./ruleset/ChinaIPs.yaml
+    interval: 86400
+
   # 中国直连 (Max No IP)
   ChinaMaxNoIP:
     type: http
@@ -319,6 +328,10 @@ rules:
   # Crypto
   - RULE-SET,Crypto,TW
   - RULE-SET,Cryptocurrency,TW
+
+  # 国内/HK 云厂商纯 IP 直连
+  - RULE-SET,ChinaIPs,DIRECT
+  - IP-CIDR,43.129.104.0/21,DIRECT,no-resolve
 
   # 国外代理
   - RULE-SET,Global,Outbound
