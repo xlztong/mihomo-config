@@ -13,16 +13,14 @@ dns:
   ipv6: true
   enhanced-mode: fake-ip
   fake-ip-range: 198.18.0.0/15
+  fake-ip-filter-mode: rule
   fake-ip-filter:
-    - "*.lan"
-    - "*.local"
-    - "*.localdomain"
-    - "*.localhost"
-    - "*.home.arpa"
-    - time.*.com
-    - ntp.*.com
-    - "*.msftconnecttest.com"
-    - "*.msftncsi.com"
+    - GEOSITE,private,real-ip
+    - GEOSITE,connectivity-check,real-ip
+    - GEOSITE,cn,real-ip
+    - RULE-SET,ChinaMaxNoIP,real-ip
+    - RULE-SET,China,real-ip
+    - MATCH,fake-ip
   default-nameserver:
     - 223.5.5.5
   nameserver-policy:
@@ -31,6 +29,10 @@ dns:
     "geosite:connectivity-check":
       - https://223.5.5.5/dns-query#DIRECT&h3=true
     "geosite:cn":
+      - https://223.5.5.5/dns-query#DIRECT&h3=true
+    "rule-set:ChinaMaxNoIP":
+      - https://223.5.5.5/dns-query#DIRECT&h3=true
+    "rule-set:China":
       - https://223.5.5.5/dns-query#DIRECT&h3=true
     "geosite:geolocation-!cn":
       - https://8.8.8.8/dns-query#Outbound
