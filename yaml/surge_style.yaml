@@ -340,6 +340,19 @@ rules:
   # SSH 端口直连（避免机场屏蔽22端口）
   - DST-PORT,22,DIRECT
 
+  # 游戏直连（避免代理/TUN 影响延迟和稳定性）
+  - PROCESS-NAME,wegame.exe,DIRECT
+  - PROCESS-NAME,wegame_env.exe,DIRECT
+  - PROCESS-NAME,icreateLol.exe,DIRECT
+  - PROCESS-NAME,LeagueClient.exe,DIRECT
+  - PROCESS-NAME,LeagueClientUx.exe,DIRECT
+  - PROCESS-NAME,LeagueClientUxRender.exe,DIRECT
+  - PROCESS-NAME,LeagueCrashHandler64.exe,DIRECT
+  - PROCESS-NAME,League of Legends.exe,DIRECT
+  - DOMAIN-SUFFIX,17roco.qq.com,DIRECT
+  - DOMAIN-SUFFIX,roco.qq.com,DIRECT
+  - DOMAIN-SUFFIX,rocom.qq.com,DIRECT
+
   # 局域网直连
   - RULE-SET,Lan,DIRECT
 
