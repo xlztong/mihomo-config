@@ -379,7 +379,7 @@ rules:
   - RULE-SET,Steam,Outbound
 
   # TradingView
-  - DOMAIN-SUFFIX,tradingview.com,US
+  - DOMAIN-SUFFIX,tradingview.com,Outbound
 
   # Crypto
   - RULE-SET,Crypto,TW
