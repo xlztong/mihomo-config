@@ -382,8 +382,8 @@ rules:
   - DOMAIN-SUFFIX,tradingview.com,Outbound
 
   # Crypto
-  - RULE-SET,Crypto,TW
-  - RULE-SET,Cryptocurrency,TW
+  - RULE-SET,Crypto,Outbound
+  - RULE-SET,Cryptocurrency,Outbound
 
   # 国内/HK 云厂商纯 IP 直连
   - RULE-SET,ChinaIPs,DIRECT
