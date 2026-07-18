@@ -58,9 +58,6 @@ proxy-groups:
       - TW
       - Manual
       - DIRECT
-    use:
-      - NNC-Chain
-
   # Google - 默认走美国
   - name: Google
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Google.png
@@ -179,17 +176,6 @@ proxy-providers:
     url: "http://127.0.0.1:38324/download/collection/All?target=ClashMeta&includeUnsupportedProxy=true"
     interval: 3600
     path: ./proxy_providers/All.yaml
-
-  # 从自建集合中只取 NNC，并通过 HK 组建立连接
-  NNC-Chain:
-    type: http
-    url: "http://127.0.0.1:38324/download/collection/Self?target=ClashMeta&includeUnsupportedProxy=true"
-    interval: 3600
-    path: ./proxy_providers/NNC-Chain.yaml
-    filter: "(?i)NNC"
-    override:
-      additional-prefix: "[链式] "
-      dialer-proxy: HK
 
 # ==================== 规则提供者 (blackmatrix7) ====================
 
