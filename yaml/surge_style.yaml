@@ -52,13 +52,14 @@ proxy-groups:
     type: select
     proxies:
       - HK
-      - NNC链式
       - JP
       - SG
       - US
       - TW
       - Manual
       - DIRECT
+    use:
+      - NNC-Chain
 
   # Google - 默认走美国
   - name: Google
@@ -140,13 +141,6 @@ proxy-groups:
     type: select
     use:
       - HuaYun-HK
-
-  # 链式代理：花云 HK -> NNC -> 目标
-  - name: NNC链式
-    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Personal.png
-    type: select
-    use:
-      - NNC-Chain
 
   # 手动选择 - 列出所有节点
   - name: Manual
