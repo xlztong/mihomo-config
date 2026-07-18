@@ -52,6 +52,7 @@ proxy-groups:
     type: select
     proxies:
       - HK
+      - NNC链式
       - JP
       - SG
       - US
@@ -133,6 +134,20 @@ proxy-groups:
     use:
       - TW
 
+  # 花云香港节点 - 作为 NNC 的可选前置
+  - name: 花云HK
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/HK.png
+    type: select
+    use:
+      - HuaYun-HK
+
+  # 链式代理：花云 HK -> NNC -> 目标
+  - name: NNC链式
+    icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Personal.png
+    type: select
+    use:
+      - NNC-Chain
+
   # 手动选择 - 列出所有节点
   - name: Manual
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Static.png
@@ -177,6 +192,24 @@ proxy-providers:
     url: "http://127.0.0.1:38324/download/collection/All?target=ClashMeta&includeUnsupportedProxy=true"
     interval: 3600
     path: ./proxy_providers/All.yaml
+
+  # 花云香港节点，专用于 NNC 链式代理的前置选择
+  HuaYun-HK:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/HuaYun-HK?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/HuaYun-HK.yaml
+
+  # 从自建集合中只取 NNC，并通过花云 HK 建立连接
+  NNC-Chain:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/Self?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/NNC-Chain.yaml
+    filter: "(?i)NNC"
+    override:
+      additional-prefix: "[链式] "
+      dialer-proxy: 花云HK
 
 # ==================== 规则提供者 (blackmatrix7) ====================
 
