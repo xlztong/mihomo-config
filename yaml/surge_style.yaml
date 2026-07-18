@@ -60,6 +60,8 @@ proxy-groups:
       - DIRECT
     use:
       - NNC-Chain
+      - Carpool-HK
+      - Carpool-NNC
 
   # Google - 默认走美国
   - name: Google
@@ -190,6 +192,28 @@ proxy-providers:
     override:
       additional-prefix: "[链式] "
       dialer-proxy: HK
+
+  # 拼车 SS 通过当前 HK 节点建立连接
+  Carpool-HK:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/All?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/Carpool-HK.yaml
+    filter: "(?i)^\u62fc\u8f66ss@xls-d0t76x8lul"
+    override:
+      additional-prefix: "[HK链] "
+      dialer-proxy: HK
+
+  # 拼车 SS 通过已有的链式 NNC 节点建立连接
+  Carpool-NNC:
+    type: http
+    url: "http://127.0.0.1:38324/download/collection/All?target=ClashMeta&includeUnsupportedProxy=true"
+    interval: 3600
+    path: ./proxy_providers/Carpool-NNC.yaml
+    filter: "(?i)^\u62fc\u8f66ss@xls-d0t76x8lul"
+    override:
+      additional-prefix: "[NNC链] "
+      dialer-proxy: "[链式] 🇭🇰 NNC"
 
 # ==================== 规则提供者 (blackmatrix7) ====================
 
