@@ -204,7 +204,7 @@ proxy-providers:
       additional-prefix: "[HK链] "
       dialer-proxy: HK
 
-  # 拼车 SS 通过已有的链式 NNC 节点建立连接
+  # 拼车 SS 通过原始 NNC 节点建立连接
   Carpool-NNC:
     type: http
     url: "http://127.0.0.1:38324/download/collection/All?target=ClashMeta&includeUnsupportedProxy=true"
@@ -213,7 +213,7 @@ proxy-providers:
     filter: "(?i)^\u62fc\u8f66ss@xls-d0t76x8lul"
     override:
       additional-prefix: "[NNC链] "
-      dialer-proxy: "[链式] 🇭🇰 NNC"
+      dialer-proxy: "🇭🇰 NNC"
 
 # ==================== 规则提供者 (blackmatrix7) ====================
 
