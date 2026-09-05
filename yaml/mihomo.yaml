@@ -51,6 +51,17 @@ proxy-groups:
       - TW
       - Outbound
 
+  # Claude - 默认走美国
+  - name: Claude
+    icon: https://cdn.simpleicons.org/claude/D97757
+    type: select
+    proxies:
+      - US
+      - JP
+      - SG
+      - TW
+      - Outbound
+
   # Final 兜底 - 走 Outbound
   - name: Final
     icon: https://testingcf.jsdelivr.net/gh/Orz-3/mini@master/Color/Final.png
@@ -304,9 +315,9 @@ rules:
   - RULE-SET,Advertising,Guard
   - RULE-SET,Privacy,Guard
 
-  # AI 服务 -> OpenAI 组
+  # AI 服务 -> OpenAI 组 / Claude 组
   - RULE-SET,OpenAI,OpenAI
-  - RULE-SET,Claude,OpenAI
+  - RULE-SET,Claude,Claude
   - RULE-SET,Copilot,OpenAI
   - RULE-SET,Gemini,OpenAI
 
